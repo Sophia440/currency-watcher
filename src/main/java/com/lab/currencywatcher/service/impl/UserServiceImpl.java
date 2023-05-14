@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
 
     private BigDecimal calculatePriceDifferencePercent(BigDecimal registered, BigDecimal current) {
         var difference = registered.subtract(current);
-        return difference.divide(registered, RoundingMode.UNNECESSARY).multiply(BigDecimal.valueOf(100L)).abs();
+        return difference.divide(registered, RoundingMode.DOWN).multiply(BigDecimal.valueOf(100L)).abs();
     }
 
     private void save(UserRecord userRecord) {
