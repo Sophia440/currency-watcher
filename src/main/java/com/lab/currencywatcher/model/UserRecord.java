@@ -5,34 +5,31 @@ import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Table(name = "currency")
+@Table(name = "user_record")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Currency {
+public class UserRecord {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer id;
 
-    private String symbol;
+    private String username;
 
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "currency_id")
+    private Currency currency;
 
-    @Column(name = "price_usd")
-    private BigDecimal priceUsd;
-
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "currency", orphanRemoval = true)
-    @Builder.Default
-    private List<UserRecord> userRecords = new ArrayList<>();
+    @Column(name = "registered_price_usd")
+    private BigDecimal registeredPriceUsd;
 
     @Column(name = "version")
     @Version
@@ -53,5 +50,4 @@ public class Currency {
     protected void onUpdate() {
         modified = LocalDateTime.now();
     }
-
 }

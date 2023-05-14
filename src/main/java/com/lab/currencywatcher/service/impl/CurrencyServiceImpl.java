@@ -36,6 +36,10 @@ public class CurrencyServiceImpl implements CurrencyService {
         return currencyRepo.findById(id);
     }
 
+    public Optional<Currency> findBySymbol(String symbol) {
+        return currencyRepo.findBySymbol(symbol);
+    }
+
     public void save(Currency currency) {
         currencyRepo.save(currency);
     }
@@ -50,7 +54,6 @@ public class CurrencyServiceImpl implements CurrencyService {
                 .collect(Collectors.toList());
     }
 
-    @Override
     public void initialLoad() {
         log.info("Loading currency prices for the first time");
         var response = availableCurrencies.keySet().stream()

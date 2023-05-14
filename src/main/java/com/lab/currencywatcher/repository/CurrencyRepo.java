@@ -11,4 +11,6 @@ public interface CurrencyRepo extends JpaRepository<Currency, Integer> {
 
     @Override
     Optional<Currency> findById(Integer integer);
+
+    Optional<Currency> findBySymbol(String symbol);
 }

@@ -24,7 +24,7 @@ public interface CurrencyControllerApi {
 
     @ApiOperation(value = "Register a price for a specified username.")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successfully registered the price.")
+            @ApiResponse(code = 200, message = "Successfully registered the price.")
     })
     void registerUserPrice(String username, String symbol);
 }

@@ -11,6 +11,8 @@ public interface CurrencyService {
 
     Optional<Currency> findById(Integer id);
 
+    Optional<Currency> findBySymbol(String symbol);
+
     void saveAll(List<Currency> currencies);
 
     List<CurrencyDto> findAllDtos();
